@@ -138,11 +138,7 @@ export class XMLHttpRequest extends XMLHttpRequestEventTarget {
 		if (this.readyState !== XMLHttpRequest.OPENED) { throw new XMLHttpRequest.InvalidStateError('XHR readyState must be OPENED'); }
 		
 		const loweredName = name.toLowerCase();
-		if (this._restrictedHeaders[loweredName] || /^sec-/.test(loweredName) || /^proxy-/.test(loweredName)) {
-			console.warn(`Refused to set unsafe header "${name}"`);
-			return;
-		}
-		
+
 		value = value.toString();
 		if (this._loweredHeaders[loweredName] != null) {
 			name = this._loweredHeaders[loweredName];
